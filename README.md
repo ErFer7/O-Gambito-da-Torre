@@ -3,6 +3,6 @@ Jogo para a 5º edição da game jaaj
 
 ## Changelog
 
-> # 0.1
+>> # 0.1
 
 Projeto criado
