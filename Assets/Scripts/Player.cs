@@ -44,7 +44,12 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Control();
+        EntityUtilities.PlayerControl(ref isMoving,
+                                      gameObject,
+                                      ref targetTilePosition,
+                                      ref velocity,
+                                      smoothTime,
+                                      convergenceThreshold);
     }
 
     private void Update()
@@ -101,22 +106,6 @@ public class Player : MonoBehaviour
                     targetTilePosition = (Vector2)gameObject.transform.position + left;
                     currentTilePosition = targetTilePosition;
                 }
-            }
-        }
-    }
-
-    private void Control()
-    {
-        if (isMoving)
-        {
-            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, targetTilePosition, ref velocity, smoothTime);
-
-            if (Vector2.Distance(gameObject.transform.position, targetTilePosition) < convergenceThreshold)
-            {
-                gameObject.transform.position = targetTilePosition;
-                gameObject.transform.position = EntityUtilities.AlignPosition(gameObject.transform.position);
-
-                isMoving = false;
             }
         }
     }

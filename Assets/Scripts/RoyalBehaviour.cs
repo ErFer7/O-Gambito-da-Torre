@@ -48,123 +48,117 @@ public class RoyalBehaviour : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Control();
+        EntityUtilities.EnemyControl(ref isMoving,
+                                     ref isTravelling,
+                                     gameObject,
+                                     ref targetTilePosition,
+                                     ref velocity,
+                                     smoothTime,
+                                     convergenceThreshold);
     }
 
     private void Update()
     {
         EnemyBehaviour();
-        Travel();
+        EntityUtilities.Travel(ref isTravelling,
+                               ref isMoving,
+                               ref travelMoveCount,
+                               gameObject.transform.position,
+                               direction,
+                               ref targetTilePosition);
     }
 
     private void EnemyBehaviour()
     {
         if (!isMoving && !isTravelling)
         {
-            if (SearchForPlayer(up, sightDistance))
+            if (EntityUtilities.SearchForPlayer(up,
+                                                sightDistance,
+                                                ref raycastResultCount,
+                                                gameObject.transform.position,
+                                                filter,
+                                                ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / up.x);
                 direction = up;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(down, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(down,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / down.x);
                 direction = down;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(right, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(right,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / right.x);
                 direction = right;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(left, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(left,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / left.x);
                 direction = left;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(upDiagonal, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(upDiagonal,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
                 direction = upDiagonal;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(downDiagonal, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(downDiagonal,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
                 direction = downDiagonal;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(rightDiagonal, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(rightDiagonal,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                 direction = rightDiagonal;
                 isTravelling = true;
             }
-            else if (SearchForPlayer(leftDiagonal, sightDistance))
+            else if (EntityUtilities.SearchForPlayer(leftDiagonal,
+                                                     sightDistance,
+                                                     ref raycastResultCount,
+                                                     gameObject.transform.position,
+                                                     filter,
+                                                     ref raycastResults))
             {
                 travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                 direction = leftDiagonal;
                 isTravelling = true;
-            }
-        }
-    }
-
-    private bool SearchForPlayer(Vector2 direction, float distance)
-    {
-        bool playerFound = false;
-
-        raycastResultCount = Physics2D.Raycast(gameObject.transform.position,
-                                                         direction,
-                                                         filter.NoFilter(),
-                                                         raycastResults,
-                                                         distance);
-        for (int i = 0; i < raycastResultCount; i++)
-        {
-            if (raycastResults[i].collider.tag == "Player")
-            {
-                playerFound = true;
-                break;
-            }
-            else if (raycastResults[i].collider.tag == "Scenery")
-            {
-                break;
-            }
-        }
-
-        return playerFound;
-    }
-
-    private void Travel()
-    {
-        if (isTravelling)
-        {
-            if (travelMoveCount > 0)
-            {
-                targetTilePosition = (Vector2)gameObject.transform.position + direction;
-                isMoving = true;
-                travelMoveCount--;
-            }
-
-            isTravelling = false;
-        }
-    }
-
-    private void Control()
-    {
-        if (isMoving)
-        {
-            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, targetTilePosition, ref velocity, smoothTime);
-
-            if (Vector2.Distance(gameObject.transform.position, targetTilePosition) < convergenceThreshold)
-            {
-                gameObject.transform.position = targetTilePosition;
-                gameObject.transform.position = EntityUtilities.AlignPosition(gameObject.transform.position);
-                isTravelling = true;
-
-                isMoving = false;
             }
         }
     }
