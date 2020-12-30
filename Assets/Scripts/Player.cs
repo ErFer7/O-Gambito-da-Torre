@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public float convergenceThreshold;
 
     [System.NonSerialized]
-    public Vector2 currentTilePosition;
+    public Vector2 tilePosition;
     #endregion
 
     #region Private Variables
@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     private Vector2 down;
     private Vector2 right;
     private Vector2 left;
-    private Vector2 targetTilePosition;
     private Vector2 velocity;
     private ContactFilter2D filter;
     private int raycastResultCount;
@@ -27,7 +26,7 @@ public class Player : MonoBehaviour
     #region Unity Methods
     void Start()
     {
-        currentTilePosition = gameObject.transform.position;
+        tilePosition = gameObject.transform.position;
 
         up = new Vector2(0.5F, 0.25F);
         down = new Vector2(-0.5F, -0.25F);
@@ -46,7 +45,7 @@ public class Player : MonoBehaviour
     {
         EntityUtilities.PlayerControl(ref isMoving,
                                       gameObject,
-                                      ref targetTilePosition,
+                                      ref tilePosition,
                                       ref velocity,
                                       smoothTime,
                                       convergenceThreshold);
@@ -70,8 +69,7 @@ public class Player : MonoBehaviour
                 if (raycastResultCount <= 1)
                 {
                     isMoving = true;
-                    targetTilePosition = (Vector2)gameObject.transform.position + up;
-                    currentTilePosition = targetTilePosition;
+                    tilePosition = (Vector2)gameObject.transform.position + up;
                 }
             }
             else if (Input.GetKey(KeyCode.DownArrow))
@@ -81,8 +79,7 @@ public class Player : MonoBehaviour
                 if (raycastResultCount <= 1)
                 {
                     isMoving = true;
-                    targetTilePosition = (Vector2)gameObject.transform.position + down;
-                    currentTilePosition = targetTilePosition;
+                    tilePosition = (Vector2)gameObject.transform.position + down;
                 }
             }
             else if (Input.GetKey(KeyCode.RightArrow))
@@ -92,8 +89,7 @@ public class Player : MonoBehaviour
                 if (raycastResultCount <= 1)
                 {
                     isMoving = true;
-                    targetTilePosition = (Vector2)gameObject.transform.position + right;
-                    currentTilePosition = targetTilePosition;
+                    tilePosition = (Vector2)gameObject.transform.position + right;
                 }
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
@@ -103,8 +99,7 @@ public class Player : MonoBehaviour
                 if (raycastResultCount <= 1)
                 {
                     isMoving = true;
-                    targetTilePosition = (Vector2)gameObject.transform.position + left;
-                    currentTilePosition = targetTilePosition;
+                    tilePosition = (Vector2)gameObject.transform.position + left;
                 }
             }
         }

@@ -6,8 +6,8 @@ public class PawnBehaviour : MonoBehaviour
     public float smoothTime;
     public float convergenceThreshold;
     public float sightDistance;
-    public float horizontalDiagonalSightDistance;
     public float verticalDiagonalSightDistance;
+    public float horizontalDiagonalSightDistance;
     public Direction searchDirection;
     public Player player;
 
@@ -31,6 +31,8 @@ public class PawnBehaviour : MonoBehaviour
     private bool isMoving;
     private bool isTravelling;
     private int travelMoveCount;
+    private float rightDiagonalSightDistance;
+    private float leftDiagonalSightDistance;
 
     private void Start()
     {
@@ -41,24 +43,36 @@ public class PawnBehaviour : MonoBehaviour
                 mainDirection = new Vector2(0.5F, 0.25F);
                 rightDiagonal = new Vector2(1.0F, 0.0F);
                 leftDiagonal = new Vector2(0.0F, 0.5F);
+
+                rightDiagonalSightDistance = horizontalDiagonalSightDistance;
+                leftDiagonalSightDistance = verticalDiagonalSightDistance;
                 break;
             case Direction.Down:
 
                 mainDirection = new Vector2(-0.5F, -0.25F);
                 rightDiagonal = new Vector2(-1.0F, 0.0F);
                 leftDiagonal = new Vector2(0.0F, -0.5F);
+
+                rightDiagonalSightDistance = horizontalDiagonalSightDistance;
+                leftDiagonalSightDistance = verticalDiagonalSightDistance;
                 break;
             case Direction.Right:
 
                 mainDirection = new Vector2(0.5F, -0.25F);
                 rightDiagonal = new Vector2(0.0F, -0.5F);
                 leftDiagonal = new Vector2(1.0F, 0.0F);
+
+                rightDiagonalSightDistance = verticalDiagonalSightDistance;
+                leftDiagonalSightDistance = horizontalDiagonalSightDistance;
                 break;
             case Direction.Left:
 
                 mainDirection = new Vector2(-0.5F, 0.25F);
                 rightDiagonal = new Vector2(0.0F, 0.5F);
                 leftDiagonal = new Vector2(-1.0F, 0.0F);
+
+                rightDiagonalSightDistance = verticalDiagonalSightDistance;
+                leftDiagonalSightDistance = horizontalDiagonalSightDistance;
                 break;
             default:
                 break;
@@ -107,12 +121,15 @@ public class PawnBehaviour : MonoBehaviour
                                                 filter,
                                                 ref raycastResults))
             {
-                travelMoveCount = ((int)((player.currentTilePosition.x - gameObject.transform.position.x) / mainDirection.x)) - 1;
-                direction = mainDirection;
-                isTravelling = true;
+                if (player.tilePosition.x != gameObject.transform.position.x && player.tilePosition.y != gameObject.transform.position.y)
+                {
+                    travelMoveCount = ((int)((player.tilePosition.x - gameObject.transform.position.x) / mainDirection.x)) - 1;
+                    direction = mainDirection;
+                    isTravelling = true;
+                }
             }
             else if (EntityUtilities.SearchForPlayer(rightDiagonal,
-                                                     verticalDiagonalSightDistance,
+                                                     rightDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
@@ -122,19 +139,19 @@ public class PawnBehaviour : MonoBehaviour
                 {
                     case Direction.Up:
 
-                        travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                         break;
                     case Direction.Down:
 
-                        travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                         break;
                     case Direction.Right:
 
-                        travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
                         break;
                     case Direction.Left:
 
-                        travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
                         break;
                     default:
                         break;
@@ -144,7 +161,7 @@ public class PawnBehaviour : MonoBehaviour
                 isTravelling = true;
             }
             else if (EntityUtilities.SearchForPlayer(leftDiagonal,
-                                                     verticalDiagonalSightDistance,
+                                                     leftDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
@@ -154,19 +171,19 @@ public class PawnBehaviour : MonoBehaviour
                 {
                     case Direction.Up:
 
-                        travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
                         break;
                     case Direction.Down:
 
-                        travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
                         break;
                     case Direction.Right:
 
-                        travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                         break;
                     case Direction.Left:
 
-                        travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                         break;
                     default:
                         break;

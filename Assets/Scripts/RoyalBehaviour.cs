@@ -6,6 +6,8 @@ public class RoyalBehaviour : MonoBehaviour
     public float smoothTime;
     public float convergenceThreshold;
     public float sightDistance;
+    public float verticalDiagonalSightDistance;
+    public float horizontalDiagonalSightDistance;
     public Player player;
 
     private Vector2 up;
@@ -79,7 +81,7 @@ public class RoyalBehaviour : MonoBehaviour
                                                 filter,
                                                 ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / up.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / up.x);
                 direction = up;
                 isTravelling = true;
             }
@@ -90,7 +92,7 @@ public class RoyalBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / down.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / down.x);
                 direction = down;
                 isTravelling = true;
             }
@@ -101,7 +103,7 @@ public class RoyalBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / right.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / right.x);
                 direction = right;
                 isTravelling = true;
             }
@@ -112,51 +114,51 @@ public class RoyalBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / left.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / left.x);
                 direction = left;
                 isTravelling = true;
             }
             else if (EntityUtilities.SearchForPlayer(upDiagonal,
-                                                     sightDistance,
+                                                     verticalDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
+                travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
                 direction = upDiagonal;
                 isTravelling = true;
             }
             else if (EntityUtilities.SearchForPlayer(downDiagonal,
-                                                     sightDistance,
+                                                     verticalDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
+                travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
                 direction = downDiagonal;
                 isTravelling = true;
             }
             else if (EntityUtilities.SearchForPlayer(rightDiagonal,
-                                                     sightDistance,
+                                                     horizontalDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                 direction = rightDiagonal;
                 isTravelling = true;
             }
             else if (EntityUtilities.SearchForPlayer(leftDiagonal,
-                                                     sightDistance,
+                                                     horizontalDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                 direction = leftDiagonal;
                 isTravelling = true;
             }

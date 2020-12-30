@@ -71,7 +71,7 @@ public class RookBehaviour : MonoBehaviour
                                                 filter,
                                                 ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / up.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / up.x);
                 direction = up;
                 isTravelling = true;
             }
@@ -82,7 +82,7 @@ public class RookBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / down.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / down.x);
                 direction = down;
                 isTravelling = true;
             }
@@ -93,7 +93,7 @@ public class RookBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / right.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / right.x);
                 direction = right;
                 isTravelling = true;
             }
@@ -104,7 +104,7 @@ public class RookBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / left.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / left.x);
                 direction = left;
                 isTravelling = true;
             }

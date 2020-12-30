@@ -13,3 +13,14 @@ Jogo para a 5º edição da game jaaj
 * Adicionadas tiles de grama
 * Sistema de movimentação de xadrez criado
 * Camera modificada para "pixel perfect"
+
+### 0.3
+
+* Adicionada a lógica de movimentação dos inimigos:
+	Torre;
+	Cavalo;
+	Bispo;
+	Rainha;
+	Rei;
+	Peão.
+* Moficações no sistema de movimentação.

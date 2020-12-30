@@ -12,11 +12,7 @@ public class EntityUtilities : MonoBehaviour
     {
         bool playerFound = false;
 
-        raycastResultCount = Physics2D.Raycast(position,
-                                                         direction,
-                                                         filter.NoFilter(),
-                                                         raycastResults,
-                                                         distance);
+        raycastResultCount = Physics2D.Raycast(position, direction, filter.NoFilter(), raycastResults, distance);
 
         for (int i = 0; i < raycastResultCount; i++)
         {
@@ -74,18 +70,18 @@ public class EntityUtilities : MonoBehaviour
 
     public static void PlayerControl(ref bool isMoving,
                                      GameObject gameObject,
-                                     ref Vector2 targetTilePosition,
+                                     ref Vector2 tilePosition,
                                      ref Vector2 velocity,
                                      float smoothTime,
                                      float convergenceThreshold)
     {
         if (isMoving)
         {
-            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, targetTilePosition, ref velocity, smoothTime);
+            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, tilePosition, ref velocity, smoothTime);
 
-            if (Vector2.Distance(gameObject.transform.position, targetTilePosition) < convergenceThreshold)
+            if (Vector2.Distance(gameObject.transform.position, tilePosition) < convergenceThreshold)
             {
-                gameObject.transform.position = targetTilePosition;
+                gameObject.transform.position = tilePosition;
                 gameObject.transform.position = AlignPosition(gameObject.transform.position);
 
                 isMoving = false;

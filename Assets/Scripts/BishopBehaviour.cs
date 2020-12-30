@@ -71,7 +71,7 @@ public class BishopBehaviour : MonoBehaviour
                                                 filter,
                                                 ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
+                travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
                 direction = upDiagonal;
                 isTravelling = true;
             }
@@ -82,7 +82,7 @@ public class BishopBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
+                travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
                 direction = downDiagonal;
                 isTravelling = true;
             }
@@ -93,7 +93,7 @@ public class BishopBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                 direction = rightDiagonal;
                 isTravelling = true;
             }
@@ -104,7 +104,7 @@ public class BishopBehaviour : MonoBehaviour
                                                      filter,
                                                      ref raycastResults))
             {
-                travelMoveCount = (int)((player.currentTilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
+                travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                 direction = leftDiagonal;
                 isTravelling = true;
             }
