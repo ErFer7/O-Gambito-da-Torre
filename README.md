@@ -16,11 +16,5 @@ Jogo para a 5º edição da game jaaj
 
 ### 0.3
 
-* Adicionada a lógica de movimentação dos inimigos:
-	Torre;
-	Cavalo;
-	Bispo;
-	Rainha;
-	Rei;
-	Peão.
+* Adicionada a lógica de movimentação dos inimigos: (Torre, cavalo, Bispo, Rainha, Rei e Peão).
 * Moficações no sistema de movimentação.
