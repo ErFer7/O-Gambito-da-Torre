@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class KnightBehaviour : MonoBehaviour
 {
     public float smoothTime;
     public float convergenceThreshold;
     public float detectionThreshold;
-    public float sightDistance;
     public Player player;
 
     private Vector2 up;
