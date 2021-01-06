@@ -5,16 +5,21 @@ Jogo para a 5º edição da game jaaj
 
 ### 0.1
 
-* Projeto criado
+* Projeto criado.
 
 ### 0.2
 
-* Projeto modificado para 2D isométrico
-* Adicionadas tiles de grama
-* Sistema de movimentação de xadrez criado
-* Camera modificada para "pixel perfect"
+* Projeto modificado para 2D isométrico.
+* Adicionadas tiles de grama.
+* Sistema de movimentação de xadrez criado.
+* Camera modificada para "pixel perfect".
 
 ### 0.3
 
 * Adicionada a lógica de movimentação dos inimigos: (Torre, cavalo, Bispo, Rainha, Rei e Peão).
 * Moficações no sistema de movimentação.
+
+### 0.4
+
+* Sprites dos inimigos adicionados.
+* Pequenas correções no código.
