@@ -23,3 +23,7 @@ Jogo para a 5º edição da game jaaj
 
 * Sprites dos inimigos adicionados.
 * Pequenas correções no código.
+
+### 0.4.1
+
+* Pequena refatoração no código.
