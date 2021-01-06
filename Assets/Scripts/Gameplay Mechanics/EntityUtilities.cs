@@ -30,7 +30,12 @@ public class EntityUtilities : MonoBehaviour
         return playerFound;
     }
 
-    public static void Travel(ref bool isTravelling, ref bool isMoving, ref int travelMoveCount, Vector3 position, Vector2 direction, ref Vector2 targetTilePosition)
+    public static void Travel(ref bool isTravelling,
+                              ref bool isMoving,
+                              ref int travelMoveCount,
+                              Vector3 position,
+                              Vector2 direction,
+                              ref Vector2 targetTilePosition)
     {
         if (isTravelling)
         {
@@ -44,7 +49,7 @@ public class EntityUtilities : MonoBehaviour
             isTravelling = false;
         }
     }
-
+    
     public static void EnemyControl(ref bool isMoving,
                                     ref bool isTravelling,
                                     GameObject gameObject,
@@ -55,7 +60,10 @@ public class EntityUtilities : MonoBehaviour
     {
         if (isMoving)
         {
-            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, targetTilePosition, ref velocity, smoothTime);
+            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position,
+                                                               targetTilePosition,
+                                                               ref velocity,
+                                                               smoothTime);
 
             if (Vector2.Distance(gameObject.transform.position, targetTilePosition) < convergenceThreshold)
             {
@@ -77,7 +85,10 @@ public class EntityUtilities : MonoBehaviour
     {
         if (isMoving)
         {
-            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position, tilePosition, ref velocity, smoothTime);
+            gameObject.transform.position = Vector2.SmoothDamp(gameObject.transform.position,
+                                                               tilePosition,
+                                                               ref velocity,
+                                                               smoothTime);
 
             if (Vector2.Distance(gameObject.transform.position, tilePosition) < convergenceThreshold)
             {
@@ -89,7 +100,10 @@ public class EntityUtilities : MonoBehaviour
         }
     }
 
-    // Esta função é possívelmente inútil agora. Mas ela poderá ser usada para evitar que a peça saia do "trilho" de movimento
+    /* 
+     * Esta função é possívelmente inútil agora. Mas ela poderá ser usada para evitar que a peça saia do "trilho" de 
+     * movimento
+     */
     private static Vector2 AlignPosition(Vector2 vector)
     {
         float xFix = Mathf.Floor(vector.x / 0.5F) * 0.5F - vector.x;

@@ -42,7 +42,7 @@ public class KnightBehaviour : MonoBehaviour
         leftUpPosition = new Vector2(-0.5F, 0.75F);
         leftDownPosition = new Vector2(-1.5F, 0.25F);
         velocity = Vector2.zero;
-
+        
         isMoving = false;
         isTravelling = false;
     }
@@ -79,56 +79,65 @@ public class KnightBehaviour : MonoBehaviour
     {
         if (!isMoving && !isTravelling)
         {
-            if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + upRightPosition) < detectionThreshold)
+            if (Vector2.Distance(player.tilePosition,
+               (Vector2)gameObject.transform.position + upRightPosition) <
+                detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = up * 2;
                 pivotDirection = right;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + upLeftPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + upLeftPosition) < 
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = up * 2;
                 pivotDirection = left;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + downRightPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + downRightPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = down * 2;
                 pivotDirection = right;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + downLeftPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + downLeftPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = down * 2;
                 pivotDirection = left;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + rightUpPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + rightUpPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = right * 2;
                 pivotDirection = up;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + rightDownPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + rightDownPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = right * 2;
                 pivotDirection = down;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + leftUpPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + leftUpPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = left * 2;
                 pivotDirection = up;
                 isTravelling = true;
             }
-            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + leftDownPosition) < detectionThreshold)
+            else if (Vector2.Distance(player.tilePosition, (Vector2)gameObject.transform.position + leftDownPosition) <
+                     detectionThreshold)
             {
                 travelMoveCount = 2;
                 direction = left * 2;

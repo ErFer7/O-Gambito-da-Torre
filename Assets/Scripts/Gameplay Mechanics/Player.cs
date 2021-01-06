@@ -64,7 +64,11 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                raycastResultCount = Physics2D.Raycast(gameObject.transform.position, up, filter.NoFilter(), raycastResults, 0.5F);
+                raycastResultCount = Physics2D.Raycast(gameObject.transform.position,
+                                                       up,
+                                                       filter.NoFilter(),
+                                                       raycastResults,
+                                                       0.5F);
 
                 if (raycastResultCount <= 1)
                 {
@@ -74,7 +78,11 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.DownArrow))
             {
-                raycastResultCount = Physics2D.Raycast(gameObject.transform.position, down, filter.NoFilter(), raycastResults, 0.5F);
+                raycastResultCount = Physics2D.Raycast(gameObject.transform.position,
+                                                       down,
+                                                       filter.NoFilter(),
+                                                       raycastResults,
+                                                       0.5F);
 
                 if (raycastResultCount <= 1)
                 {
@@ -84,7 +92,11 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                raycastResultCount = Physics2D.Raycast(gameObject.transform.position, right, filter.NoFilter(), raycastResults, 0.5F);
+                raycastResultCount = Physics2D.Raycast(gameObject.transform.position,
+                                                       right,
+                                                       filter.NoFilter(),
+                                                       raycastResults,
+                                                       0.5F);
 
                 if (raycastResultCount <= 1)
                 {
@@ -94,7 +106,11 @@ public class Player : MonoBehaviour
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                raycastResultCount = Physics2D.Raycast(gameObject.transform.position, left, filter.NoFilter(), raycastResults, 0.5F);
+                raycastResultCount = Physics2D.Raycast(gameObject.transform.position,
+                                                       left,
+                                                       filter.NoFilter(),
+                                                       raycastResults,
+                                                       0.5F);
 
                 if (raycastResultCount <= 1)
                 {

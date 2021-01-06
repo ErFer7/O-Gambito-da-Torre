@@ -121,9 +121,11 @@ public class PawnBehaviour : MonoBehaviour
                                                 filter,
                                                 ref raycastResults))
             {
-                if (player.tilePosition.x != gameObject.transform.position.x && player.tilePosition.y != gameObject.transform.position.y)
+                if (player.tilePosition.x != gameObject.transform.position.x &&
+                    player.tilePosition.y != gameObject.transform.position.y)
                 {
-                    travelMoveCount = ((int)((player.tilePosition.x - gameObject.transform.position.x) / mainDirection.x)) - 1;
+                    travelMoveCount = ((int)((player.tilePosition.x - gameObject.transform.position.x) /
+                                       mainDirection.x)) - 1;
                     direction = mainDirection;
                     isTravelling = true;
                 }
@@ -139,19 +141,23 @@ public class PawnBehaviour : MonoBehaviour
                 {
                     case Direction.Up:
 
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
+                                          rightDiagonal.x);
                         break;
                     case Direction.Down:
 
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
+                                          rightDiagonal.x);
                         break;
                     case Direction.Right:
 
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
+                                          rightDiagonal.y);
                         break;
                     case Direction.Left:
 
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / rightDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
+                                          rightDiagonal.y);
                         break;
                     default:
                         break;
@@ -171,19 +177,23 @@ public class PawnBehaviour : MonoBehaviour
                 {
                     case Direction.Up:
 
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
+                                          leftDiagonal.y);
                         break;
                     case Direction.Down:
 
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / leftDiagonal.y);
+                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
+                                          leftDiagonal.y);
                         break;
                     case Direction.Right:
 
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
+                                          leftDiagonal.x);
                         break;
                     case Direction.Left:
 
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
+                                          leftDiagonal.x);
                         break;
                     default:
                         break;
