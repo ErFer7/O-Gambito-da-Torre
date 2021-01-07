@@ -27,3 +27,7 @@ Jogo para a 5º edição da game jaaj
 ### 0.4.1
 
 * Pequena refatoração no código.
+
+### 0.5
+
+* Menu básico criado.
