@@ -36,3 +36,7 @@ Jogo para a 5º edição da game jaaj
 
 * Nome do jogo definido como "O Gambito da Torre".
 * Correção nas proporções do menu.
+
+### 0.6
+
+* Design do menu concluído.
