@@ -16,7 +16,7 @@ public class EntityUtilities : MonoBehaviour
 
         for (int i = 0; i < raycastResultCount; i++)
         {
-            if (raycastResults[i].collider.tag == "Player")
+            if (raycastResults[i].collider.tag == "Player" && i == 1)
             {
                 playerFound = true;
                 break;
@@ -32,10 +32,11 @@ public class EntityUtilities : MonoBehaviour
 
     public static void Travel(ref bool isTravelling,
                               ref bool isMoving,
-                              ref int travelMoveCount,
                               Vector3 position,
                               Vector2 direction,
-                              ref Vector2 targetTilePosition)
+                              ref int travelMoveCount,
+                              ref Vector2 targetTilePosition,
+                              GameObject gameObject)
     {
         if (isTravelling)
         {

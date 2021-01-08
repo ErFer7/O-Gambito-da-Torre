@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class KnightBehaviour : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class KnightBehaviour : MonoBehaviour
         leftUpPosition = new Vector2(-0.5F, 0.75F);
         leftDownPosition = new Vector2(-1.5F, 0.25F);
         velocity = Vector2.zero;
-        
+
         isMoving = false;
         isTravelling = false;
     }
@@ -69,10 +70,11 @@ public class KnightBehaviour : MonoBehaviour
 
         EntityUtilities.Travel(ref isTravelling,
                                ref isMoving,
-                               ref travelMoveCount,
                                gameObject.transform.position,
                                direction,
-                               ref targetTilePosition);
+                               ref travelMoveCount,
+                               ref targetTilePosition,
+                               gameObject);
     }
 
     private void EnemyBehaviour()

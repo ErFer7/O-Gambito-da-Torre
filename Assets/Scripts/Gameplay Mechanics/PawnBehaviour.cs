@@ -30,9 +30,9 @@ public class PawnBehaviour : MonoBehaviour
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
     private bool isTravelling;
-    private int travelMoveCount;
     private float rightDiagonalSightDistance;
     private float leftDiagonalSightDistance;
+    private int travelMoveCount;
 
     private void Start()
     {
@@ -104,10 +104,11 @@ public class PawnBehaviour : MonoBehaviour
         EnemyBehaviour();
         EntityUtilities.Travel(ref isTravelling,
                                ref isMoving,
-                               ref travelMoveCount,
                                gameObject.transform.position,
                                direction,
-                               ref targetTilePosition);
+                               ref travelMoveCount,
+                               ref targetTilePosition,
+                               gameObject);
     }
 
     private void EnemyBehaviour()
@@ -125,7 +126,7 @@ public class PawnBehaviour : MonoBehaviour
                     player.tilePosition.y != gameObject.transform.position.y)
                 {
                     travelMoveCount = ((int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                       mainDirection.x)) - 1;
+                                            mainDirection.x)) - 1;
                     direction = mainDirection;
                     isTravelling = true;
                 }
@@ -141,23 +142,23 @@ public class PawnBehaviour : MonoBehaviour
                 {
                     case Direction.Up:
 
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                          rightDiagonal.x);
+                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / 
+                                               rightDiagonal.x);
                         break;
                     case Direction.Down:
 
                         travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                          rightDiagonal.x);
+                                               rightDiagonal.x);
                         break;
                     case Direction.Right:
 
                         travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                          rightDiagonal.y);
+                                               rightDiagonal.y);
                         break;
                     case Direction.Left:
 
                         travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                          rightDiagonal.y);
+                                               rightDiagonal.y);
                         break;
                     default:
                         break;
@@ -178,22 +179,22 @@ public class PawnBehaviour : MonoBehaviour
                     case Direction.Up:
 
                         travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                          leftDiagonal.y);
+                                               leftDiagonal.y);
                         break;
                     case Direction.Down:
 
                         travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                          leftDiagonal.y);
+                                               leftDiagonal.y);
                         break;
                     case Direction.Right:
 
                         travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                          leftDiagonal.x);
+                                               leftDiagonal.x);
                         break;
                     case Direction.Left:
 
                         travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                          leftDiagonal.x);
+                                               leftDiagonal.x);
                         break;
                     default:
                         break;

@@ -64,10 +64,11 @@ public class RoyalBehaviour : MonoBehaviour
         EnemyBehaviour();
         EntityUtilities.Travel(ref isTravelling,
                                ref isMoving,
-                               ref travelMoveCount,
                                gameObject.transform.position,
                                direction,
-                               ref targetTilePosition);
+                               ref travelMoveCount,
+                               ref targetTilePosition,
+                               gameObject);
     }
 
     private void EnemyBehaviour()
