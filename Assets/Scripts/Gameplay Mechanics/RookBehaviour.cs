@@ -61,6 +61,14 @@ public class RookBehaviour : MonoBehaviour
                                gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void EnemyBehaviour()
     {
         if (!isMoving && !isTravelling)

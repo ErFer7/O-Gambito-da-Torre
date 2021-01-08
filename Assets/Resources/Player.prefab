@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1222901183351324033}
   - component: {fileID: 1222901183351324032}
   - component: {fileID: 1222901183351324039}
-  - component: {fileID: 1222901183351324035}
+  - component: {fileID: -6143983196303279001}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothTime: 0.15
   convergenceThreshold: 0.025
---- !u!50 &1222901183351324035
+--- !u!50 &-6143983196303279001
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -211,7 +211,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3.5
+  m_LinearDrag: 0.5
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
