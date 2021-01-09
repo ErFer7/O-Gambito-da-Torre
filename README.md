@@ -46,3 +46,7 @@ Jogo para a 5º edição da game jaaj
 * Adicionado o sistema de movimentação da câmera.
 * Rigid bodies modificados para serem usados apenas na simulação e não na movimentação.
 * Colisor do jogador e inimigos modificados, agora todos são colisores reais e não gatilhos.
+* Adicionadas 7 fases.
+* Agora os inimigos conseguem matar uns aos outros.
+* Agora o jogador consegue matar os inimigos.
+* Progressão de fases adicionada.

@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3acbb576758f3024aa676bcc3496319d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevel: 10
+  maxLevel: 7
 --- !u!1 &218668346
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: v0.6
+  m_Text: v0.7
 --- !u!222 &787673485
 CanvasRenderer:
   m_ObjectHideFlags: 0
