@@ -26,6 +26,7 @@ public class RoyalBehaviour : MonoBehaviour
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
     private bool isTravelling;
+    private bool isAttacking;
     private int travelMoveCount;
 
     private void Start()
@@ -46,6 +47,7 @@ public class RoyalBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -68,12 +70,12 @@ public class RoyalBehaviour : MonoBehaviour
                                direction,
                                ref travelMoveCount,
                                ref targetTilePosition,
-                               gameObject);
+                               ref isAttacking);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
         }
@@ -88,7 +90,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                 ref raycastResultCount,
                                                 gameObject.transform.position,
                                                 filter,
-                                                ref raycastResults))
+                                                ref raycastResults,
+                                                gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / up.x);
                 direction = up;
@@ -99,7 +102,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / down.x);
                 direction = down;
@@ -110,7 +114,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / right.x);
                 direction = right;
@@ -121,7 +126,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / left.x);
                 direction = left;
@@ -132,7 +138,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
                 direction = upDiagonal;
@@ -143,7 +150,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
                 direction = downDiagonal;
@@ -154,7 +162,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                 direction = rightDiagonal;
@@ -165,7 +174,8 @@ public class RoyalBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                 direction = leftDiagonal;

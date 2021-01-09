@@ -8,7 +8,8 @@ public class EntityUtilities : MonoBehaviour
                                  ref int raycastResultCount,
                                  Vector3 position,
                                  ContactFilter2D filter,
-                                 ref List<RaycastHit2D> raycastResults)
+                                 ref List<RaycastHit2D> raycastResults,
+                                 GameObject gameObject)
     {
         bool playerFound = false;
 
@@ -16,14 +17,17 @@ public class EntityUtilities : MonoBehaviour
 
         for (int i = 0; i < raycastResultCount; i++)
         {
-            if (raycastResults[i].collider.CompareTag("Player"))
+            if (raycastResults[i].collider.gameObject != gameObject)
             {
-                playerFound = true;
-                break;
-            }
-            else if (raycastResults[i].collider.CompareTag("Scenery") || raycastResults[i].collider.CompareTag("Enemy"))
-            {
-                break;
+                if (raycastResults[i].collider.CompareTag("Player"))
+                {
+                    playerFound = true;
+                    break;
+                }
+                else if (raycastResults[i].collider.CompareTag("Scenery") || raycastResults[i].collider.CompareTag("Enemy"))
+                {
+                    break;
+                }
             }
         }
 
@@ -36,7 +40,7 @@ public class EntityUtilities : MonoBehaviour
                               Vector2 direction,
                               ref int travelMoveCount,
                               ref Vector2 targetTilePosition,
-                              GameObject gameObject)
+                              ref bool isAttacking)
     {
         if (isTravelling)
         {
@@ -46,8 +50,12 @@ public class EntityUtilities : MonoBehaviour
                 isMoving = true;
                 travelMoveCount--;
             }
-
+            
             isTravelling = false;
+        }
+        else
+        {
+            isAttacking = false;
         }
     }
     
@@ -71,7 +79,6 @@ public class EntityUtilities : MonoBehaviour
                 gameObject.transform.position = targetTilePosition;
                 gameObject.transform.position = AlignPosition(gameObject.transform.position);
                 isTravelling = true;
-
                 isMoving = false;
             }
         }

@@ -33,6 +33,7 @@ public class PawnBehaviour : MonoBehaviour
     private float rightDiagonalSightDistance;
     private float leftDiagonalSightDistance;
     private int travelMoveCount;
+    private bool isAttacking;
 
     private void Start()
     {
@@ -86,6 +87,7 @@ public class PawnBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -108,14 +110,26 @@ public class PawnBehaviour : MonoBehaviour
                                direction,
                                ref travelMoveCount,
                                ref targetTilePosition,
-                               gameObject);
+                               ref isAttacking);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            if (isMoving && targetTilePosition == player.tilePosition)
+            {
+
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -128,7 +142,8 @@ public class PawnBehaviour : MonoBehaviour
                                                 ref raycastResultCount,
                                                 gameObject.transform.position,
                                                 filter,
-                                                ref raycastResults))
+                                                ref raycastResults,
+                                                gameObject))
             {
                 if (player.tilePosition.x != gameObject.transform.position.x &&
                     player.tilePosition.y != gameObject.transform.position.y)
@@ -144,72 +159,26 @@ public class PawnBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
-                switch (searchDirection)
-                {
-                    case Direction.Up:
-
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / 
-                                               rightDiagonal.x);
-                        break;
-                    case Direction.Down:
-
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                               rightDiagonal.x);
-                        break;
-                    case Direction.Right:
-
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                               rightDiagonal.y);
-                        break;
-                    case Direction.Left:
-
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                               rightDiagonal.y);
-                        break;
-                    default:
-                        break;
-                }
-
+                travelMoveCount = 1;
                 direction = rightDiagonal;
                 isTravelling = true;
+                isAttacking = true;
             }
             else if (EntityUtilities.SearchForPlayer(leftDiagonal,
                                                      leftDiagonalSightDistance,
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
-                switch (searchDirection)
-                {
-                    case Direction.Up:
-
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                               leftDiagonal.y);
-                        break;
-                    case Direction.Down:
-
-                        travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) /
-                                               leftDiagonal.y);
-                        break;
-                    case Direction.Right:
-
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                               leftDiagonal.x);
-                        break;
-                    case Direction.Left:
-
-                        travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) /
-                                               leftDiagonal.x);
-                        break;
-                    default:
-                        break;
-                }
-
+                travelMoveCount = 1;
                 direction = leftDiagonal;
                 isTravelling = true;
+                isAttacking = true;
             }
         }
     }

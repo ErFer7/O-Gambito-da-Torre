@@ -20,6 +20,7 @@ public class BishopBehaviour : MonoBehaviour
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
     private bool isTravelling;
+    private bool isAttacking;
     private int travelMoveCount;
 
     private void Start()
@@ -36,6 +37,7 @@ public class BishopBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -58,8 +60,9 @@ public class BishopBehaviour : MonoBehaviour
                                direction,
                                ref travelMoveCount,
                                ref targetTilePosition,
-                               gameObject);
+                               ref isAttacking);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
@@ -68,7 +71,8 @@ public class BishopBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            if ((Vector2)collision.gameObject.transform.position == targetTilePosition) {
+            if (collision.gameObject.GetComponent<Player>().tilePosition == targetTilePosition)
+            {
 
                 Destroy(collision.gameObject);
             }
@@ -88,7 +92,8 @@ public class BishopBehaviour : MonoBehaviour
                                                 ref raycastResultCount,
                                                 gameObject.transform.position,
                                                 filter,
-                                                ref raycastResults))
+                                                ref raycastResults,
+                                                gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / upDiagonal.y);
                 direction = upDiagonal;
@@ -99,7 +104,8 @@ public class BishopBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.y - gameObject.transform.position.y) / downDiagonal.y);
                 direction = downDiagonal;
@@ -110,7 +116,8 @@ public class BishopBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / rightDiagonal.x);
                 direction = rightDiagonal;
@@ -121,7 +128,8 @@ public class BishopBehaviour : MonoBehaviour
                                                      ref raycastResultCount,
                                                      gameObject.transform.position,
                                                      filter,
-                                                     ref raycastResults))
+                                                     ref raycastResults,
+                                                     gameObject))
             {
                 travelMoveCount = (int)((player.tilePosition.x - gameObject.transform.position.x) / leftDiagonal.x);
                 direction = leftDiagonal;
