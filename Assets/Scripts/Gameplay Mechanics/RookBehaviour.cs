@@ -20,7 +20,6 @@ public class RookBehaviour : MonoBehaviour
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
     private bool isTravelling;
-    private bool isAttacking;
     private int travelMoveCount;
 
     private void Start()
@@ -37,7 +36,6 @@ public class RookBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
-        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -59,8 +57,7 @@ public class RookBehaviour : MonoBehaviour
                                gameObject.transform.position,
                                direction,
                                ref travelMoveCount,
-                               ref targetTilePosition,
-                               ref isAttacking);
+                               ref targetTilePosition);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

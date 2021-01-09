@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     public void PlayButton()
     {
-        scriptManager.LoadScene(1);
+        scriptManager.AdvanceLevel();
     }
 
     public void QuitButton()

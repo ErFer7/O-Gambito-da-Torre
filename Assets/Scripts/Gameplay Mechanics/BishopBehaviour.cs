@@ -20,7 +20,6 @@ public class BishopBehaviour : MonoBehaviour
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
     private bool isTravelling;
-    private bool isAttacking;
     private int travelMoveCount;
 
     private void Start()
@@ -37,7 +36,6 @@ public class BishopBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
-        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -59,8 +57,7 @@ public class BishopBehaviour : MonoBehaviour
                                gameObject.transform.position,
                                direction,
                                ref travelMoveCount,
-                               ref targetTilePosition,
-                               ref isAttacking);
+                               ref targetTilePosition);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,7 +68,7 @@ public class BishopBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.GetComponent<Player>().tilePosition == targetTilePosition)
+            if (isMoving && targetTilePosition == player.tilePosition)
             {
 
                 Destroy(collision.gameObject);

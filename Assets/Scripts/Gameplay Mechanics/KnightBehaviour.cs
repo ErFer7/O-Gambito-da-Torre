@@ -26,7 +26,6 @@ public class KnightBehaviour : MonoBehaviour
     private Vector2 velocity;
     private bool isMoving;
     private bool isTravelling;
-    private bool isAttacking;
     private int travelMoveCount;
 
     private void Start()
@@ -47,7 +46,6 @@ public class KnightBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
-        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -75,8 +73,7 @@ public class KnightBehaviour : MonoBehaviour
                                gameObject.transform.position,
                                direction,
                                ref travelMoveCount,
-                               ref targetTilePosition,
-                               ref isAttacking);
+                               ref targetTilePosition);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,7 +84,7 @@ public class KnightBehaviour : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            if ((Vector2)collision.gameObject.transform.position == targetTilePosition)
+            if (isMoving && targetTilePosition == player.tilePosition)
             {
 
                 Destroy(collision.gameObject);

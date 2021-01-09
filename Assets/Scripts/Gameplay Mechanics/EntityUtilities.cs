@@ -39,8 +39,7 @@ public class EntityUtilities : MonoBehaviour
                               Vector3 position,
                               Vector2 direction,
                               ref int travelMoveCount,
-                              ref Vector2 targetTilePosition,
-                              ref bool isAttacking)
+                              ref Vector2 targetTilePosition)
     {
         if (isTravelling)
         {
@@ -52,10 +51,6 @@ public class EntityUtilities : MonoBehaviour
             }
             
             isTravelling = false;
-        }
-        else
-        {
-            isAttacking = false;
         }
     }
     

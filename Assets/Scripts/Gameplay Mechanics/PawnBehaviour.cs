@@ -33,7 +33,6 @@ public class PawnBehaviour : MonoBehaviour
     private float rightDiagonalSightDistance;
     private float leftDiagonalSightDistance;
     private int travelMoveCount;
-    private bool isAttacking;
 
     private void Start()
     {
@@ -87,7 +86,6 @@ public class PawnBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
-        isAttacking = false;
     }
 
     private void FixedUpdate()
@@ -109,8 +107,7 @@ public class PawnBehaviour : MonoBehaviour
                                gameObject.transform.position,
                                direction,
                                ref travelMoveCount,
-                               ref targetTilePosition,
-                               ref isAttacking);
+                               ref targetTilePosition);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -165,7 +162,6 @@ public class PawnBehaviour : MonoBehaviour
                 travelMoveCount = 1;
                 direction = rightDiagonal;
                 isTravelling = true;
-                isAttacking = true;
             }
             else if (EntityUtilities.SearchForPlayer(leftDiagonal,
                                                      leftDiagonalSightDistance,
@@ -178,7 +174,6 @@ public class PawnBehaviour : MonoBehaviour
                 travelMoveCount = 1;
                 direction = leftDiagonal;
                 isTravelling = true;
-                isAttacking = true;
             }
         }
     }
