@@ -16,12 +16,12 @@ public class EntityUtilities : MonoBehaviour
 
         for (int i = 0; i < raycastResultCount; i++)
         {
-            if (raycastResults[i].collider.tag == "Player" && i == 1)
+            if (raycastResults[i].collider.CompareTag("Player"))
             {
                 playerFound = true;
                 break;
             }
-            else if (raycastResults[i].collider.tag == "Scenery")
+            else if (raycastResults[i].collider.CompareTag("Scenery") || raycastResults[i].collider.CompareTag("Enemy"))
             {
                 break;
             }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3423803173762918036}
   - component: {fileID: 3423803173762918039}
   - component: {fileID: 3423803173762918033}
+  - component: {fileID: -845922850412168478}
   m_Layer: 0
   m_Name: Enemy Rook
   m_TagString: Enemy
@@ -168,7 +169,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.1875}
@@ -203,3 +204,24 @@ MonoBehaviour:
   convergenceThreshold: 0.025
   sightDistance: 10
   player: {fileID: 0}
+--- !u!50 &-845922850412168478
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423803173762918035}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7

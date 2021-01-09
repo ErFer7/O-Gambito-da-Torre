@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private int raycastResultCount;
     private List<RaycastHit2D> raycastResults;
     private bool isMoving;
+    private bool canMove;
     #endregion
 
     #region Unity Methods
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         raycastResults = new List<RaycastHit2D>();
 
         isMoving = false;
+        canMove = false;
     }
 
     private void FixedUpdate()
@@ -72,6 +74,19 @@ public class Player : MonoBehaviour
 
                 if (raycastResultCount <= 1)
                 {
+                    canMove = true;
+                }
+                else if (!raycastResults[1].collider.CompareTag("Scenery"))
+                {
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
+                }
+
+                if (canMove)
+                {
                     isMoving = true;
                     tilePosition = (Vector2)gameObject.transform.position + up;
                 }
@@ -85,6 +100,19 @@ public class Player : MonoBehaviour
                                                        0.5F);
 
                 if (raycastResultCount <= 1)
+                {
+                    canMove = true;
+                }
+                else if (!raycastResults[1].collider.CompareTag("Scenery"))
+                {
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
+                }
+
+                if (canMove)
                 {
                     isMoving = true;
                     tilePosition = (Vector2)gameObject.transform.position + down;
@@ -100,6 +128,19 @@ public class Player : MonoBehaviour
 
                 if (raycastResultCount <= 1)
                 {
+                    canMove = true;
+                }
+                else if (!raycastResults[1].collider.CompareTag("Scenery"))
+                {
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
+                }
+
+                if (canMove)
+                {
                     isMoving = true;
                     tilePosition = (Vector2)gameObject.transform.position + right;
                 }
@@ -113,6 +154,19 @@ public class Player : MonoBehaviour
                                                        0.5F);
 
                 if (raycastResultCount <= 1)
+                {
+                    canMove = true;
+                }
+                else if (!raycastResults[1].collider.CompareTag("Scenery"))
+                {
+                    canMove = true;
+                }
+                else
+                {
+                    canMove = false;
+                }
+
+                if (canMove)
                 {
                     isMoving = true;
                     tilePosition = (Vector2)gameObject.transform.position + left;

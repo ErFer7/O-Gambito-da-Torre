@@ -40,3 +40,9 @@ Jogo para a 5º edição da game jaaj
 ### 0.6
 
 * Design do menu concluído.
+
+### 0.7
+
+* Adicionado o sistema de movimentação da câmera.
+* Rigid bodies modificados para serem usados apenas na simulação e não na movimentação.
+* Colisor do jogador e inimigos modificados, agora todos são colisores reais e não gatilhos.

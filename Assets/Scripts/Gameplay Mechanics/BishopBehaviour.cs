@@ -60,12 +60,22 @@ public class BishopBehaviour : MonoBehaviour
                                ref targetTilePosition,
                                gameObject);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            if ((Vector2)collision.gameObject.transform.position == targetTilePosition) {
+
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
