@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class KnightBehaviour : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class KnightBehaviour : MonoBehaviour
     private bool isTravelling;
     private int travelMoveCount;
     private ScriptManager scriptManager;
+    private ParticleSystem particleSys;
+    private TilemapRenderer tilemapRenderer;
+    private Coroutine coroutine_DA;
 
     private void Start()
     {
@@ -49,6 +53,9 @@ public class KnightBehaviour : MonoBehaviour
         isTravelling = false;
 
         scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
+
+        particleSys = gameObject.GetComponent<ParticleSystem>();
+        tilemapRenderer = gameObject.GetComponent<TilemapRenderer>();
     }
 
     private void FixedUpdate()
@@ -83,7 +90,7 @@ public class KnightBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            coroutine_DA = StartCoroutine(DeathAnimation());
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
@@ -95,7 +102,7 @@ public class KnightBehaviour : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                coroutine_DA = StartCoroutine(DeathAnimation());
             }
         }
     }
@@ -170,5 +177,20 @@ public class KnightBehaviour : MonoBehaviour
                 isTravelling = true;
             }
         }
+    }
+
+    private IEnumerator DeathAnimation()
+    {
+        particleSys.Play();
+        tilemapRenderer.enabled = false;
+
+        while (particleSys.IsAlive())
+        {
+            isTravelling = false;
+            isMoving = false;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }

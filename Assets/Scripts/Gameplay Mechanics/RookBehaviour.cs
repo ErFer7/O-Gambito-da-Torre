@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class RookBehaviour : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class RookBehaviour : MonoBehaviour
     private bool isTravelling;
     private int travelMoveCount;
     private ScriptManager scriptManager;
+    private ParticleSystem particleSys;
+    private TilemapRenderer tilemapRenderer;
+    private Coroutine coroutine_DA;
 
     private void Start()
     {
@@ -39,6 +44,9 @@ public class RookBehaviour : MonoBehaviour
         isTravelling = false;
 
         scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
+
+        particleSys = gameObject.GetComponent<ParticleSystem>();
+        tilemapRenderer = gameObject.GetComponent<TilemapRenderer>();
     }
 
     private void FixedUpdate()
@@ -67,7 +75,7 @@ public class RookBehaviour : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Destroy(collision.gameObject);
+            coroutine_DA = StartCoroutine(DeathAnimation());
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
@@ -129,5 +137,20 @@ public class RookBehaviour : MonoBehaviour
                 isTravelling = true;
             }
         }
+    }
+
+    private IEnumerator DeathAnimation()
+    {
+        particleSys.Play();
+        tilemapRenderer.enabled = false;
+
+        while (particleSys.IsAlive())
+        {
+            isTravelling = false;
+            isMoving = false;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 }
