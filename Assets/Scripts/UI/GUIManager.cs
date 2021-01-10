@@ -15,5 +15,14 @@ public class GUIManager : MonoBehaviour
         {
             scriptManager.LoadScene(0);
         }
+        else if (Input.GetKey(KeyCode.R))
+        {
+            scriptManager.ResetLevel();
+        }
+    }
+
+    public void ResetLevel()
+    {
+        scriptManager.ResetLevel();
     }
 }

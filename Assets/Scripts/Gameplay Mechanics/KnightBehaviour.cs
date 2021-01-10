@@ -27,6 +27,7 @@ public class KnightBehaviour : MonoBehaviour
     private bool isMoving;
     private bool isTravelling;
     private int travelMoveCount;
+    private ScriptManager scriptManager;
 
     private void Start()
     {
@@ -46,6 +47,8 @@ public class KnightBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+
+        scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
     }
 
     private void FixedUpdate()
@@ -87,7 +90,8 @@ public class KnightBehaviour : MonoBehaviour
             if (isMoving && targetTilePosition == player.tilePosition)
             {
 
-                Destroy(collision.gameObject);
+                // Condição de derrota
+                scriptManager.ResetLevel();
             }
             else
             {

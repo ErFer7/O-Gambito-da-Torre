@@ -21,6 +21,7 @@ public class BishopBehaviour : MonoBehaviour
     private bool isMoving;
     private bool isTravelling;
     private int travelMoveCount;
+    private ScriptManager scriptManager;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class BishopBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+
+        scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
     }
 
     private void FixedUpdate()
@@ -70,8 +73,8 @@ public class BishopBehaviour : MonoBehaviour
         {
             if (isMoving && targetTilePosition == player.tilePosition)
             {
-
-                Destroy(collision.gameObject);
+                // Condição de derrota
+                scriptManager.ResetLevel();
             }
             else
             {

@@ -33,6 +33,7 @@ public class PawnBehaviour : MonoBehaviour
     private float rightDiagonalSightDistance;
     private float leftDiagonalSightDistance;
     private int travelMoveCount;
+    private ScriptManager scriptManager;
 
     private void Start()
     {
@@ -86,6 +87,8 @@ public class PawnBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+
+        scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
     }
 
     private void FixedUpdate()
@@ -121,7 +124,8 @@ public class PawnBehaviour : MonoBehaviour
             if (isMoving && targetTilePosition == player.tilePosition)
             {
 
-                Destroy(collision.gameObject);
+                // Condição de derrota
+                scriptManager.ResetLevel();
             }
             else
             {

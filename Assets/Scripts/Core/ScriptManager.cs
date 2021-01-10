@@ -34,6 +34,7 @@ public class ScriptManager : MonoBehaviour
         else
         {
             level = 0;
+            SceneManager.LoadScene(level);
         }
     }
 

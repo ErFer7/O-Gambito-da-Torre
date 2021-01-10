@@ -21,6 +21,7 @@ public class RookBehaviour : MonoBehaviour
     private bool isMoving;
     private bool isTravelling;
     private int travelMoveCount;
+    private ScriptManager scriptManager;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class RookBehaviour : MonoBehaviour
 
         isMoving = false;
         isTravelling = false;
+
+        scriptManager = GameObject.FindGameObjectWithTag("Script Manager").GetComponent<ScriptManager>();
     }
 
     private void FixedUpdate()
@@ -62,9 +65,14 @@ public class RookBehaviour : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            // Condição de derrota
+            scriptManager.ResetLevel();
         }
     }
 
