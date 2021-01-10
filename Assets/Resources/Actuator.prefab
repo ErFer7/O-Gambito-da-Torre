@@ -58,12 +58,12 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 92cea4d261a6e8045af7232b17af8eeb, type: 2}
+    m_Data: {fileID: 11400000, guid: 8ef51c9efa091a14da6b04dfa3a60eb5, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: 2190ba025f709f9429f3ef5f66f78e5f, type: 3}
+    m_Data: {fileID: 21300000, guid: 1148cdb296cd7864eadaceac437236a4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -149,7 +149,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

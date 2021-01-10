@@ -50,3 +50,8 @@ Jogo para a 5º edição da game jaaj
 * Agora os inimigos conseguem matar uns aos outros.
 * Agora o jogador consegue matar os inimigos.
 * Progressão de fases adicionada.
+
+### 0.8
+
+* Adicionados os sprites das placas de pressão, portas e saída da fase.
+* GUI removida
